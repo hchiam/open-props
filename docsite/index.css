@@ -403,6 +403,12 @@ pre[class*="language-"] {
   bottom: 0;
   overflow-x: auto;
 
+  &:not(.scrolling-down) {
+    position: fixed;
+    top: 90dvh;
+    transform: translateY(100%); 
+  }
+
   background-image: linear-gradient(to top, hsl(var(--gray-9-hsl) / 98%) 1ch, 75%, hsl(var(--gray-9-hsl) / 0%));
   margin-block-start: var(--size-8);
   padding-block: var(--size-5) var(--size-2);

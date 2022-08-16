@@ -42,3 +42,22 @@ let observer = new IntersectionObserver(entries => {
 for (let container of containers) {
   observer.observe(container);      
 }
+
+// TODO: find a better home for this:
+let lastScrollTop = 0;
+window.addEventListener('scroll', function(event) {
+  const scrollTop = document.documentElement.scrollTop
+  const scrollingDown = scrollTop <= lastScrollTop
+  if (scrollingDown) {
+    // setCSSVariable('--_module-list-position', 'fixed', '#scroll-nav')
+    document.querySelector('#scroll-nav').classList.add('scrolling-down')
+  } else {
+    // setCSSVariable('--_module-list-position', 'sticky', '#scroll-nav')
+    document.querySelector('#scroll-nav').classList.remove('scrolling-down')
+  }
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop
+})
+
+function setCSSVariable(name, value, selector) {
+  document.querySelector(selector || ":root").style.setProperty(name, value);
+}
